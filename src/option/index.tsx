@@ -2,10 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './components/app';
+import 'style/index.css';
 
-import './index.scss';
-
-const container = document.createElement('option');
+const container = document.createElement('div');
 document.body.appendChild(container);
 
 const root = createRoot(container);

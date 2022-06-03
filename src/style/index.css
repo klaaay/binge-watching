@@ -1,0 +1,16 @@
+
+:root{
+  --primary-color:#d1759b;
+  --font-color-0:rgba(0,0,0,0.85);
+
+  --white:#ffffff;
+
+  --border-width-base:1px;
+  --border-width-large:2px;
+
+  --border-radius-base:4px;
+
+  --font-size-small:12px;
+  --font-size-base:14px;
+  --font-size-large:16px;
+}

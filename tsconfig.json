@@ -15,7 +15,11 @@
     "downlevelIteration": true,
     "baseUrl": "./src",
     "outDir": "./build",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "common": ["src/common/*"],
+      "style": ["src/style/*"]
+    }
   },
   "include": ["src", "typings.d.ts"],
   "exclude": ["node_modules", "src/**/*.spec.ts"]

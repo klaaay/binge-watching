@@ -33,20 +33,24 @@
   "dependencies": {
     "dexie": "^3.2.1",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "rambda": "^7.0.3",
     "react": "^18.1.0",
     "react-dom": "^18.0.0",
-    "rxjs": "^7.5.5"
+    "rxjs": "^7.5.5",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-react-jsx": "^7.17.3",
     "@babel/preset-env": "^7.16.11",
     "@types/chrome": "^0.0.181",
+    "@types/styled-components": "^5.1.24",
     "@types/webextension-polyfill": "^0.8.3",
     "autoprefixer": "^10.4.4",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.4",
+    "babel-plugin-styled-components": "^2.0.7",
     "concurrently": "^7.1.0",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",

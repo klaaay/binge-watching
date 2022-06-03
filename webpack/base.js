@@ -23,6 +23,8 @@ const Content = join(Source, 'content');
 const Popup = join(Source, 'popup');
 const Lib = join(Source, 'lib');
 const Option = join(Source, 'option');
+const Common = join(Source, 'common');
+const Style = join(Source, 'style');
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -55,6 +57,14 @@ const config = {
               [
                 '@babel/plugin-transform-react-jsx',
                 // { "pragma":"h" }
+              ],
+              [
+                require.resolve('babel-plugin-styled-components'),
+                {
+                  ssr: false,
+                  displayName: !isProd,
+                  fileName: !isProd,
+                },
               ],
             ],
           },
@@ -148,6 +158,8 @@ const config = {
       popup: Popup,
       assets: Assets,
       option: Option,
+      common: Common,
+      style: Style,
     },
   },
   optimization: {
