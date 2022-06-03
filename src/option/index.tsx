@@ -5,7 +5,7 @@ import App from './components/app';
 
 import './index.scss';
 
-const container = document.createElement('popup');
+const container = document.createElement('option');
 document.body.appendChild(container);
 
 const root = createRoot(container);
