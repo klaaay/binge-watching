@@ -25,7 +25,8 @@
     "start:chrome": "concurrently npm:watch:chrome npm:reload:chrome",
     "start:brave": "concurrently npm:watch:chrome npm:reload:brave",
     "start:firefox": "concurrently npm:watch:firefox npm:reload:firefox",
-    "start": "concurrently npm:watch:chrome npm:reload:brave npm:watch:firefox npm:reload:firefox"
+    "start": "concurrently npm:watch:chrome npm:reload:brave npm:watch:firefox npm:reload:firefox",
+    "refmt": "prettier --config ./.prettierrc --write ./src/**/*.{ts,tsx,css,less,scss}"
   },
   "author": "Debdut Karmakar <iawaiponly@gmail.com>",
   "license": "ISC",

@@ -70,4 +70,4 @@ module.exports = [
   // "webNavigation",
   // "webRequest",
   // "webRequestBlocking"
-]
+];
