@@ -1,5 +1,8 @@
 export type Binge = {
+  id: string;
   title: string;
   url: string;
-  count: string;
+  current: string;
+  total: string;
+  post: string;
 };

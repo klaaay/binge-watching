@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './components/app';
+import 'toastr/build/toastr.min.css';
 import 'style/index.css';
 
 const container = document.createElement('div');

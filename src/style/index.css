@@ -1,9 +1,14 @@
 
 :root{
   --primary-color:#d1759b;
+  --error-color:#f5222d;
+  --success-color:#52c41a;
+  --warning-color:#ffec3d;
+
   --font-color-0:rgba(0,0,0,0.85);
 
   --white:#ffffff;
+  --black:#000000;
 
   --border-width-base:1px;
   --border-width-large:2px;
@@ -13,4 +18,36 @@
   --font-size-small:12px;
   --font-size-base:14px;
   --font-size-large:16px;
+
+  --padding-sm:8px;
+  --padding-md:16px;
+  --padding-lg:24px;
+
+  --margin-sm:8px;
+  --margin-md:16px;
+  --margin-lg:24px;
+}
+
+body{
+  overflow: hidden;
+}
+
+.primary{
+  color: var(--primary-color);
+}
+
+.error{
+  color: var(--error-color);
+}
+
+.danger{
+  color: var(--error-color);
+}
+
+.warning{
+  color: var(--warning-color);
+}
+
+.success{
+  color: var(--success-color);
 }

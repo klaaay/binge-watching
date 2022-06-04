@@ -1,9 +1,15 @@
 import styled, { css } from 'styled-components';
 
-const flexCenter = css`
+export const flexCenter = () => css`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const bgCommon = (fit = 'cover') => css`
+  background-size: ${fit};
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const PageWrapper = styled.div`
@@ -12,24 +18,54 @@ export const PageWrapper = styled.div`
   padding: 2px;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   color: var(--primary-color);
 `;
 
-export const Input = styled.input``;
+export const SectionTitle = styled.h4`
+  color: var(--primary-color);
+`;
+
+export const Input = styled.input`
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid var(--black);
+  outline: none;
+
+  &:focus {
+    border: 1px solid var(--primary-color);
+  }
+`;
 
 export const Button = styled.div<{
-  type?: 'default' | 'primary';
+  type?: 'default' | 'primary' | 'danger' | 'success';
 }>`
   color: var(--primary-color);
   background-color: var(--white);
   border: var(--border-width-base) solid var(--primary-color);
   border-radius: var(--border-radius-base);
   cursor: pointer;
+  width: 65px;
+  height: 24px;
+  ${flexCenter()}
   ${props =>
     props.type == 'primary' &&
     css`
       background-color: var(--primary-color);
+      color: var(--white);
+    `}
+  ${props =>
+    props.type == 'danger' &&
+    css`
+      background-color: var(--error-color);
+      border: var(--border-width-base) solid var(--error-color);
+      color: var(--white);
+    `}
+  ${props =>
+    props.type == 'success' &&
+    css`
+      background-color: var(--success-color);
+      border: var(--border-width-base) solid var(--success-color);
       color: var(--white);
     `}
 `;
@@ -37,6 +73,7 @@ export const Button = styled.div<{
 export const Flex = styled.div<{
   center?: boolean;
   alignCenter?: boolean;
+  gap?: number;
 }>`
   display: flex;
   ${props =>
@@ -49,6 +86,12 @@ export const Flex = styled.div<{
     props.alignCenter &&
     css`
       align-items: center;
+    `}
+
+  ${props =>
+    props.gap &&
+    css`
+      gap: ${props.gap}px;
     `}
 `;
 
@@ -69,3 +112,5 @@ export const Icon = styled.div<{
       color: var(--white);
     `}
 `;
+
+
