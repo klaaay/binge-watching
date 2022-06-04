@@ -38,9 +38,9 @@
     "react": "^18.1.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.31.3",
+    "react-hot-toast": "^2.2.0",
     "rxjs": "^7.5.5",
-    "styled-components": "^5.3.5",
-    "toastr": "^2.1.4"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

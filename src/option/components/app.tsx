@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Input, Flex, Button, Title, SectionTitle } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { ContentWrapper, NavHeader, PageWrapper, AddForm, ListItemWrapper, Label } from './styles';
-import toastr from 'toastr';
+import toast, { Toaster } from 'react-hot-toast';
 import { modifySpecificBing, removeSpecificBing } from './helper';
 
 const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.png';
@@ -30,7 +30,7 @@ function App() {
         binges: _binges,
       });
       setBinges(_binges);
-      toastr.success('添加成功');
+      toast.success('添加成功');
       reset({
         title: '',
         url: '',
@@ -55,7 +55,7 @@ function App() {
         value: e.target.value || originalValue,
       });
       setBinges(_binges);
-    });
+    }, 300);
 
   return (
     <PageWrapper id="app-root">
@@ -64,17 +64,6 @@ function App() {
       </NavHeader>
       <ContentWrapper>
         <div className="sidebar-left">
-          <div style={{ marginBottom: 16 }}>
-            <Button
-              onClick={() => {
-                chrome.storage.local.set({
-                  binges,
-                });
-              }}
-              type="primary">
-              应用修改
-            </Button>
-          </div>
           <div>
             <Button
               onClick={() => {
@@ -112,8 +101,6 @@ function App() {
                   <Button
                     onClick={() => {
                       const _binges = removeSpecificBing(binges, { id });
-                      console.log('toastr', toastr);
-                      toastr.success('删除成功');
                       setBinges(_binges);
                     }}
                     className="danger">
@@ -171,6 +158,7 @@ function App() {
           </AddForm>
         </div>
       </ContentWrapper>
+      <Toaster />
     </PageWrapper>
   );
 }
