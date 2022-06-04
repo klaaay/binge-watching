@@ -10,7 +10,7 @@ const prodPlugins = [],
   isProd = process.env.NODE_ENV === 'production';
 
 if (isProd) {
-  prodPlugins.push(new optimize.AggressiveMergingPlugin(), new optimize.OccurrenceOrderPlugin());
+  prodPlugins.push(new optimize.AggressiveMergingPlugin());
 }
 
 const Root = join(__dirname, '..');
@@ -29,7 +29,7 @@ const Style = join(Source, 'style');
 const config = {
   mode: process.env.NODE_ENV,
   target: 'web',
-  devtool: isProd ? 'none' : 'cheap-source-map',
+  devtool: isProd ? undefined : 'cheap-source-map',
   entry: {
     background: join(Background, 'index.ts'),
     popup: join(Popup, 'index.tsx'),
