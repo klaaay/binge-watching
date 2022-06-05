@@ -24,7 +24,6 @@ const BingesList = () => {
 
   const handleSwitchSpecificChange = (id: string, key: string) =>
     debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('haha', e.target.checked);
       const _binges = modifySpecificBing(binges, {
         id,
         key,
@@ -38,8 +37,6 @@ const BingesList = () => {
       setBinges((data?.binges || []) as Binge[]);
     });
   }, []);
-
-  console.log('binges', binges);
 
   return (
     <>

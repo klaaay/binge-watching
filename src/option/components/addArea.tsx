@@ -14,7 +14,6 @@ const AddArea = () => {
 
   const addBinge = ({ title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
     chrome.storage.local.get('binges', function (data) {
-      console.log('isEnd', isEnd);
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
         {

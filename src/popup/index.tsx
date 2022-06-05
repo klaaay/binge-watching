@@ -9,5 +9,3 @@ document.body.appendChild(container);
 
 const root = createRoot(container);
 root.render(<App />);
-
-console.log('Popup 👋');
