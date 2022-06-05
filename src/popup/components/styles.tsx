@@ -35,7 +35,7 @@ export const BingesList = styled.div`
         display: inline-block;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
   }
