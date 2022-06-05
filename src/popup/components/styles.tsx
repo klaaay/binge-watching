@@ -1,9 +1,30 @@
 import styled from 'styled-components';
 
+export const PopupNav = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  position: fixed;
+  top: 0;
+  width: var(--popup-width);
+  padding: var(--padding-sm);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--primary-color);
+  z-index: 1;
+
+  .time {
+    color: var(--font-color-1);
+    font-size: var(--font-size-small);
+    padding-right: var(--padding-lg);
+  }
+`;
+
 export const BingesList = styled.div`
   padding: var(--padding-sm);
   max-height: 800px;
   overflow: hidden;
+  margin-top: 50px;
 
   .binge-item {
     cursor: pointer;

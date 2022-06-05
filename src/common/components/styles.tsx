@@ -12,14 +12,23 @@ export const bgCommon = (fit = 'cover') => css`
   background-repeat: no-repeat;
 `;
 
+export const scrollbarNone = () => css`
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+`;
+
 export const PageWrapper = styled.div`
-  width: 400px;
+  width: var(--popup-width);
 `;
 
 export const Title = styled.h2`
   color: var(--primary-color);
   margin-top: 0px;
-  border-bottom: 1px solid var(--primary-color);
 `;
 
 export const SectionTitle = styled.h4`

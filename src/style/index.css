@@ -29,10 +29,13 @@
   --margin-sm:12px;
   --margin-md:16px;
   --margin-lg:24px;
+
+  --popup-width:400px;
 }
 
 body{
   overflow: hidden;
+  margin: 0px;
 }
 
 .primary{
