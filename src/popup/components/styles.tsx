@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const BingesList = styled.div`
   padding: 12px;
+  height: 800px;
+  overflow: auto;
 
   .binge-item {
     cursor: pointer;
