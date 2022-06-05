@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { uniqueId, debounce } from 'lodash-es';
+import { uniqueId, debounce, isNumber } from 'lodash-es';
 import { useForm } from 'react-hook-form';
 import { Input, Flex, Button, Title, SectionTitle } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { ContentWrapper, NavHeader, PageWrapper, AddForm, ListItemWrapper, Label } from './styles';
 import toast, { Toaster } from 'react-hot-toast';
 import { modifySpecificBing, removeSpecificBing } from './helper';
+import { Week } from 'common/constants';
 
 const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.png';
 
@@ -20,11 +21,20 @@ function App() {
   } = useForm<Binge>();
   const submitRef = useRef<HTMLInputElement>(null);
 
-  const addBinge = ({ title, url, current, total, post, updateAt }) => {
+  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek }) => {
     chrome.storage.local.get('binges', function (data) {
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
-        { title, url, current, total, updateAt, post: !!post ? post : DEFAULT_POST, id: `${title}_${uniqueId()}` },
+        {
+          title,
+          url,
+          current,
+          total,
+          updateAt,
+          updateWeek,
+          post: !!post ? post : DEFAULT_POST,
+          id: `${title}_${uniqueId()}`,
+        },
       ];
       chrome.storage.local.set({
         binges: _binges,
@@ -48,7 +58,7 @@ function App() {
   }, []);
 
   const handleSpecificChange = (id: string, key: string, originalValue: string) =>
-    debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+    debounce((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       const _binges = modifySpecificBing(binges, {
         id,
         key,
@@ -56,6 +66,8 @@ function App() {
       });
       setBinges(_binges);
     }, 300);
+
+  const weekList = Object.values(Week).filter(isNumber);
 
   return (
     <PageWrapper id="app-root">
@@ -78,7 +90,7 @@ function App() {
           </div>
         </div>
         <div className="content">
-          {binges?.map(({ id, title, url, current, total, post, updateAt }) => {
+          {binges?.map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
             return (
               <ListItemWrapper key={id}>
                 <SectionTitle>{title}</SectionTitle>
@@ -100,6 +112,14 @@ function App() {
                 </Flex>
                 <Flex>
                   <Label>更新：</Label>
+                  <select
+                    defaultValue={updateWeek}
+                    onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
+                    style={{ marginRight: 4 }}>
+                    {weekList.map(item => {
+                      return <option value={item}>{Week[item]}</option>;
+                    })}
+                  </select>
                   <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
                 </Flex>
                 <Flex>
@@ -145,6 +165,11 @@ function App() {
             </Flex>
             <Flex alignCenter>
               <Label>更新：</Label>
+              <select style={{ marginRight: 4 }} {...register('updateWeek')}>
+                {weekList.map(item => {
+                  return <option value={item}>{Week[item]}</option>;
+                })}
+              </select>
               <Input placeholder="更新时间" {...register('updateAt')} />
             </Flex>
             <Flex alignCenter>

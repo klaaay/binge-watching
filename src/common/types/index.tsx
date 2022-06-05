@@ -6,4 +6,5 @@ export type Binge = {
   total: string;
   post: string;
   updateAt: string;
+  updateWeek: string;
 };

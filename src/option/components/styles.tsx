@@ -76,5 +76,6 @@ export const ListItemWrapper = styled.div`
 `;
 
 export const Label = styled.div`
-  flex-basis: 55px;
+  flex-basis: 50px;
+  min-width: 50px;
 `;

@@ -3,6 +3,7 @@ import { PageWrapper, Title, Link, TipText } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { BingesList, PopupNav } from './styles';
 import { getProgressValue, getWeekDate } from './utils';
+import { Week } from 'common/constants';
 
 function App() {
   const [binges, setBinges] = useState<Binge[]>([]);
@@ -42,7 +43,7 @@ function App() {
       <BingesList>
         {binges
           ?.sort((a, b) => getProgressValue(a.current, a.total) - getProgressValue(b.current, b.total))
-          .map(({ id, title, url, current, total, post, updateAt }) => {
+          .map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
             const progressValue = getProgressValue(current, total);
             return (
               <div
@@ -69,7 +70,7 @@ function App() {
                       value={progressValue}></progress>
                     <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
                   </div>
-                  <div className="update-time">{updateAt}</div>
+                  <div className="update-time">{`${Week[updateWeek] || ''} ${updateAt}`}</div>
                 </div>
               </div>
             );
