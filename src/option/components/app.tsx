@@ -20,11 +20,11 @@ function App() {
   } = useForm<Binge>();
   const submitRef = useRef<HTMLInputElement>(null);
 
-  const addBinge = ({ title, url, current, total, post }) => {
+  const addBinge = ({ title, url, current, total, post, updateAt }) => {
     chrome.storage.local.get('binges', function (data) {
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
-        { title, url, current, total, post: !!post ? post : DEFAULT_POST, id: `${title}_${uniqueId()}` },
+        { title, url, current, total, updateAt, post: !!post ? post : DEFAULT_POST, id: `${title}_${uniqueId()}` },
       ];
       chrome.storage.local.set({
         binges: _binges,
@@ -78,23 +78,32 @@ function App() {
           </div>
         </div>
         <div className="content">
-          {binges?.map(({ id, title, url, current, total, post }) => {
+          {binges?.map(({ id, title, url, current, total, post, updateAt }) => {
             return (
               <ListItemWrapper key={id}>
                 <SectionTitle>{title}</SectionTitle>
                 <Flex>
+                  <Label>剧名：</Label>
                   <Input defaultValue={title} onChange={handleSpecificChange(id, 'title', title)} />
                 </Flex>
                 <Flex>
+                  <Label>地址：</Label>
                   <Input defaultValue={url} onChange={handleSpecificChange(id, 'url', url)} />
                 </Flex>
                 <Flex>
+                  <Label>看到：</Label>
                   <Input defaultValue={current} onChange={handleSpecificChange(id, 'current', current)} />
                 </Flex>
                 <Flex>
+                  <Label>一共：</Label>
                   <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
                 </Flex>
                 <Flex>
+                  <Label>更新：</Label>
+                  <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
+                </Flex>
+                <Flex>
+                  <Label>海报：</Label>
                   <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
                 </Flex>
                 <Flex>
@@ -133,6 +142,10 @@ function App() {
             <Flex alignCenter>
               <Label>一共：</Label>
               <Input placeholder="一共几集" {...register('total')} />
+            </Flex>
+            <Flex alignCenter>
+              <Label>更新：</Label>
+              <Input placeholder="更新时间" {...register('updateAt')} />
             </Flex>
             <Flex alignCenter>
               <Label>海报：</Label>

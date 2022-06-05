@@ -6,6 +6,7 @@
   --warning-color:#ffec3d;
 
   --font-color-0:rgba(0,0,0,0.85);
+  --font-color-1:rgba(0,0,0,0.65);
 
   --white:#ffffff;
   --black:#000000;
@@ -19,11 +20,13 @@
   --font-size-base:14px;
   --font-size-large:16px;
 
-  --padding-sm:8px;
+  --padding-xs:8px;
+  --padding-sm:12px;
   --padding-md:16px;
   --padding-lg:24px;
 
-  --margin-sm:8px;
+  --margin-xs:8px;
+  --margin-sm:12px;
   --margin-md:16px;
   --margin-lg:24px;
 }

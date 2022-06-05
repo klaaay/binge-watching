@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const BingesList = styled.div`
-  padding: 12px;
+  padding: var(--padding-sm);
   max-height: 800px;
   overflow: auto;
 
   .binge-item {
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
     margin-bottom: var(--margin-sm);
 
     .content {
@@ -26,11 +25,19 @@ export const BingesList = styled.div`
         color: var(--font-color-0);
         padding-left: 8px;
       }
+
+      .update-time {
+        margin-top: var(--margin-xs);
+        font-size: var(--font-size-small);
+        color: var(--font-color-1);
+      }
     }
 
     .post {
-      width: 86px;
-      height: 65px;
+      flex-basis: 120px;
+      width: 120px;
+      height: 90px;
+      margin-right: var(--margin-sm);
       img {
         display: inline-block;
         width: 100%;

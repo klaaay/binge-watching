@@ -16,7 +16,7 @@ function App() {
     <PageWrapper>
       <Title style={{ margin: '0 12px', paddingBottom: 12 }}>追剧列表</Title>
       <BingesList>
-        {binges?.map(({ id, title, url, current, total, post }) => {
+        {binges?.map(({ id, title, url, current, total, post, updateAt }) => {
           return (
             <div
               key={id}
@@ -24,6 +24,9 @@ function App() {
                 window.open(url);
               }}
               className="binge-item">
+              <div className="post">
+                <img src={post} alt={title} />
+              </div>
               <div className="content">
                 <div className="title">
                   {title}
@@ -31,9 +34,7 @@ function App() {
                     {current} / {total}
                   </span>
                 </div>
-              </div>
-              <div className="post">
-                <img src={post} alt={title} />
+                <div className="update-time">{updateAt}</div>
               </div>
             </div>
           );
