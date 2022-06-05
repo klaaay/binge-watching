@@ -7,4 +7,5 @@ export type Binge = {
   post: string;
   updateAt: string;
   updateWeek: string;
+  isEnd?: boolean;
 };

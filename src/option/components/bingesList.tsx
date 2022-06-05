@@ -22,11 +22,24 @@ const BingesList = () => {
       setBinges(_binges);
     }, 300);
 
+  const handleSwitchSpecificChange = (id: string, key: string) =>
+    debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('haha', e.target.checked);
+      const _binges = modifySpecificBing(binges, {
+        id,
+        key,
+        value: e.target.checked,
+      });
+      setBinges(_binges);
+    }, 300);
+
   useEffect(() => {
     chrome.storage.local.get('binges', function (data) {
       setBinges((data?.binges || []) as Binge[]);
     });
   }, []);
+
+  console.log('binges', binges);
 
   return (
     <>
@@ -38,7 +51,7 @@ const BingesList = () => {
         placeholder="输入剧名筛选"></Input>
       {binges
         ?.filter(item => item.title?.includes(filterValue))
-        .map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
+        .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
           return (
             <ListItemWrapper key={id}>
               <SectionTitle>{title}</SectionTitle>
@@ -74,6 +87,10 @@ const BingesList = () => {
               <Flex>
                 <Label>海报：</Label>
                 <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
+              </Flex>
+              <Flex>
+                <Label>完结：</Label>
+                <Input type="checkbox" defaultChecked={isEnd} onChange={handleSwitchSpecificChange(id, 'isEnd')} />
               </Flex>
               <Flex>
                 <Button

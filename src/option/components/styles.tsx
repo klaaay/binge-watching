@@ -54,6 +54,9 @@ export const ContentWrapper = styled.div`
     & {
       input {
         width: 100%;
+        &[type='checkbox'] {
+          width: auto;
+        }
       }
     }
   }
@@ -71,6 +74,9 @@ export const ListItemWrapper = styled.div`
   & {
     input {
       width: 100%;
+      &[type='checkbox'] {
+        width: auto;
+      }
     }
   }
 `;

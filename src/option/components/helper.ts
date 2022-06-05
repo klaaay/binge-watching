@@ -11,7 +11,7 @@ export const modifySpecificBing = (
   }: {
     id: string;
     key: string;
-    value: string;
+    value: string | boolean;
   }
 ) => {
   let _binges = cloneDeep(originalBinges);

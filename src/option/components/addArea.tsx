@@ -12,8 +12,9 @@ const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.pn
 const AddArea = () => {
   const { handleSubmit, register, setBinges, reset, errors, submitRef } = useOptionState();
 
-  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek }) => {
+  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
     chrome.storage.local.get('binges', function (data) {
+      console.log('isEnd', isEnd);
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
         {
@@ -24,6 +25,7 @@ const AddArea = () => {
           updateAt,
           updateWeek,
           post: !!post ? post : DEFAULT_POST,
+          isEnd,
           id: `${title}_${uniqueId()}`,
         },
       ];
@@ -38,6 +40,7 @@ const AddArea = () => {
         current: '',
         total: '',
         post: '',
+        isEnd: false,
       });
     });
   };
@@ -77,6 +80,10 @@ const AddArea = () => {
       <Flex alignCenter>
         <Label>海报：</Label>
         <Input placeholder="剧的海报图地址" {...register('post')} />
+      </Flex>
+      <Flex alignCenter>
+        <Label>完结：</Label>
+        <Input type="checkbox" {...register('isEnd')} />
       </Flex>
       <Flex alignCenter gap={8}>
         <input

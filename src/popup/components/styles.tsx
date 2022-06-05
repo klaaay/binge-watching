@@ -63,11 +63,21 @@ export const BingesList = styled.div`
       width: 120px;
       height: 90px;
       margin-right: var(--margin-sm);
+      position: relative;
       img {
         display: inline-block;
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+
+      .end-icon {
+        position: absolute;
+        right: 8px;
+        top: 1px;
+        z-index: 1;
+        opacity: 0.9;
+        padding: 2px 5px;
       }
     }
   }

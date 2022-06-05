@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PageWrapper, Title, Link, TipText } from 'common/components/styles';
+import { PageWrapper, Title, Link, TipText, Icon } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { BingesList, PopupNav } from './styles';
 import { getProgressValue, getWeekDate } from './utils';
@@ -42,8 +42,14 @@ function App() {
 
       <BingesList>
         {binges
-          ?.sort((a, b) => getProgressValue(a.current, a.total) - getProgressValue(b.current, b.total))
-          .map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
+          ?.sort((a, b) => {
+            if (a.isEnd !== undefined && b.isEnd !== undefined && a.isEnd !== b.isEnd) {
+              return Number(a.isEnd) - Number(b.isEnd);
+            } else {
+              return getProgressValue(a.current, a.total) - getProgressValue(b.current, b.total);
+            }
+          })
+          .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd }) => {
             const progressValue = getProgressValue(current, total);
             return (
               <div
@@ -54,6 +60,11 @@ function App() {
                 className="binge-item">
                 <div className="post">
                   <img src={post} alt={title} />
+                  {isEnd && (
+                    <Icon className="end-icon" type="primary">
+                      完结
+                    </Icon>
+                  )}
                 </div>
                 <div className="content">
                   <div className="title">
