@@ -1,5 +1,5 @@
 module.exports = {
-  name: "Browser Extension",
-  short_name: "Ext",
-  description: "Browser Extension Boilerplate",
-}
+  name: 'Binge Watching',
+  short_name: 'bw',
+  description: 'a extension for config your own binge-watching',
+};

@@ -1,6 +1,6 @@
-const { version } = require("../version.json");
-const permissions = require("../permissions");
-const { name, short_name, description } = require("../app_info");
+const { version } = require('../version.json');
+const permissions = require('../permissions');
+const { name, short_name, description } = require('../app_info');
 
 module.exports = {
   version,
@@ -9,30 +9,30 @@ module.exports = {
   short_name,
   description,
   permissions,
-  host_permissions: ["<all_urls>"],
+  host_permissions: ['<all_urls>'],
   action: {
     default_title: name,
-    default_popup: "assets/html/popup.html",
-    default_icon: "assets/images/logo.png",
+    default_popup: 'assets/html/popup.html',
+    default_icon: 'assets/images/logo.png',
   },
   content_scripts: [
     {
-      matches: ["<all_urls>"],
+      matches: ['<all_urls>'],
       // css: ["styles.css"],
-      js: ["content.js"],
+      js: ['content.js'],
     },
   ],
   icons: {
-    128: "assets/images/logo.png",
+    128: 'assets/images/logo.png',
   },
   background: {
-    service_worker: "background.js",
+    service_worker: 'background.js',
   },
   web_accessible_resources: [
     {
-      resources: ["assets/**"],
-      matches: ["<all_urls>"],
+      resources: ['assets/**'],
+      matches: ['<all_urls>'],
     },
   ],
-  options_page: "assets/html/options.html",
+  options_page: 'assets/html/options.html',
 };
