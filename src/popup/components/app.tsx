@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { PageWrapper, Title, Link } from 'common/components/styles';
+import { PageWrapper, Title, Link, TipText } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { BingesList, PopupNav } from './styles';
-import { getWeekDate } from './utils';
+import { getProgressValue, getWeekDate } from './utils';
 
 function App() {
   const [binges, setBinges] = useState<Binge[]>([]);
@@ -40,29 +40,40 @@ function App() {
       </PopupNav>
 
       <BingesList>
-        {binges?.map(({ id, title, url, current, total, post, updateAt }) => {
-          return (
-            <div
-              key={id}
-              onClick={() => {
-                window.open(url);
-              }}
-              className="binge-item">
-              <div className="post">
-                <img src={post} alt={title} />
-              </div>
-              <div className="content">
-                <div className="title">
-                  {title}
-                  <span className="episode">
-                    {current} / {total}
-                  </span>
+        {binges
+          ?.sort((a, b) => getProgressValue(a.current, a.total) - getProgressValue(b.current, b.total))
+          .map(({ id, title, url, current, total, post, updateAt }) => {
+            const progressValue = getProgressValue(current, total);
+            return (
+              <div
+                key={id}
+                onClick={() => {
+                  window.open(url);
+                }}
+                className="binge-item">
+                <div className="post">
+                  <img src={post} alt={title} />
                 </div>
-                <div className="update-time">{updateAt}</div>
+                <div className="content">
+                  <div className="title">
+                    {title}
+                    <span className="episode">
+                      {current} / {total}
+                    </span>
+                  </div>
+                  <div>
+                    <progress
+                      title={String(progressValue)}
+                      className="progress"
+                      max="100"
+                      value={progressValue}></progress>
+                    <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
+                  </div>
+                  <div className="update-time">{updateAt}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </BingesList>
     </PageWrapper>
   );

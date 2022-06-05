@@ -47,6 +47,10 @@ export const BingesList = styled.div`
         padding-left: 8px;
       }
 
+      .progress {
+        margin-top: var(--margin-xs);
+      }
+
       .update-time {
         margin-top: var(--margin-xs);
         font-size: var(--font-size-small);

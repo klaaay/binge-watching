@@ -5,3 +5,7 @@ export function getWeekDate() {
   var week = weeks[day];
   return week;
 }
+
+export function getProgressValue(current: string, total: string) {
+  return Number(((~~current / ~~total) * 100).toFixed(0));
+}

@@ -126,3 +126,8 @@ export const Link = styled.a`
   text-decoration: none;
   color: var(--primary-color);
 `;
+
+export const TipText = styled.span`
+  color: var(--font-color-1);
+  font-size: var(--font-size-small);
+`;
