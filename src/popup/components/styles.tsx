@@ -22,8 +22,6 @@ export const PopupNav = styled.div`
 
 export const BingesList = styled.div`
   padding: var(--padding-sm);
-  max-height: 800px;
-  overflow: hidden;
   margin-top: 50px;
 
   .binge-item {
@@ -75,7 +73,6 @@ export const BingesList = styled.div`
         position: absolute;
         right: 8px;
         top: 1px;
-        z-index: 1;
         opacity: 0.9;
         padding: 2px 5px;
       }

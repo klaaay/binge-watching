@@ -11,8 +11,11 @@ function _useOptionState() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<Binge>();
   const submitRef = useRef<HTMLInputElement>(null);
+
+  const watchIsEnd = watch('isEnd', false);
 
   return {
     register,
@@ -23,6 +26,7 @@ function _useOptionState() {
 
     binges,
     setBinges,
+    watchIsEnd,
   };
 }
 

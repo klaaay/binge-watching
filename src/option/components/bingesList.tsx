@@ -50,7 +50,7 @@ const BingesList = () => {
         ?.filter(item => item.title?.includes(filterValue))
         .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
           return (
-            <ListItemWrapper key={id}>
+            <ListItemWrapper key={`${title}-${id}`}>
               <SectionTitle>{title}</SectionTitle>
 
               <Flex>
@@ -70,13 +70,24 @@ const BingesList = () => {
                 <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
               </Flex>
               <Flex>
+                <Label>完结：</Label>
+                <Input type="checkbox" defaultChecked={isEnd} onChange={handleSwitchSpecificChange(id, 'isEnd')} />
+              </Flex>
+              <Flex
+                style={{
+                  display: isEnd ? 'none' : 'flex',
+                }}>
                 <Label>更新：</Label>
                 <select
                   defaultValue={updateWeek}
                   onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
                   style={{ marginRight: 4 }}>
                   {weekList.map(item => {
-                    return <option value={item}>{Week[item]}</option>;
+                    return (
+                      <option key={item} value={item}>
+                        {Week[item]}
+                      </option>
+                    );
                   })}
                 </select>
                 <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
@@ -84,10 +95,6 @@ const BingesList = () => {
               <Flex>
                 <Label>海报：</Label>
                 <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
-              </Flex>
-              <Flex>
-                <Label>完结：</Label>
-                <Input type="checkbox" defaultChecked={isEnd} onChange={handleSwitchSpecificChange(id, 'isEnd')} />
               </Flex>
               <Flex>
                 <Button

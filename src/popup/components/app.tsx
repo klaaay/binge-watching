@@ -43,19 +43,23 @@ function App() {
       <BingesList>
         {binges
           ?.sort((a, b) => {
-            if (a.isEnd !== undefined && b.isEnd !== undefined && a.isEnd !== b.isEnd) {
-              return Number(a.isEnd) - Number(b.isEnd);
-            } else {
-              return getProgressValue(a.current, a.total) - getProgressValue(b.current, b.total);
+            let aProgress = getProgressValue(a.current, a.total);
+            let bProgress = getProgressValue(b.current, b.total);
+            if (a.isEnd) {
+              aProgress = aProgress + 100;
             }
+            if (b.isEnd) {
+              bProgress = bProgress + 100;
+            }
+            return aProgress - bProgress;
           })
           .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd }) => {
             const progressValue = getProgressValue(current, total);
             return (
               <div
-                key={id}
+                key={`${title}-${id}`}
                 onClick={() => {
-                  window.open(url);
+                  window.open(`${url}?now=${current}`);
                 }}
                 className="binge-item">
                 <div className="post">
@@ -81,7 +85,7 @@ function App() {
                       value={progressValue}></progress>
                     <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
                   </div>
-                  <div className="update-time">{`${Week[updateWeek] || ''} ${updateAt}`}</div>
+                  {!isEnd && <div className="update-time">{`${Week[updateWeek] || ''} ${updateAt}`}</div>}
                 </div>
               </div>
             );
