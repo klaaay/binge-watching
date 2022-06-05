@@ -14,8 +14,6 @@ export const bgCommon = (fit = 'cover') => css`
 
 export const PageWrapper = styled.div`
   width: 400px;
-  height: 75px;
-  padding: 2px;
 `;
 
 export const Title = styled.h2`
@@ -113,4 +111,9 @@ export const Icon = styled.div<{
       background-color: var(--primary-color);
       color: var(--white);
     `}
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: var(--primary-color);
 `;

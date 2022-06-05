@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BingesList = styled.div`
   padding: var(--padding-sm);
   max-height: 800px;
-  overflow: auto;
+  overflow: hidden;
 
   .binge-item {
     cursor: pointer;

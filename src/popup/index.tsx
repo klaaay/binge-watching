@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './components/app';
 import 'style/index.css';
 
-const container = document.createElement('popup');
+const container = document.createElement('div');
 document.body.appendChild(container);
 
 const root = createRoot(container);

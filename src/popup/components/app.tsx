@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PageWrapper, Title } from 'common/components/styles';
+import { PageWrapper, Title, Link } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { BingesList } from './styles';
 
@@ -14,7 +14,18 @@ function App() {
 
   return (
     <PageWrapper>
-      <Title style={{ margin: '0 12px', paddingBottom: 12 }}>追剧列表</Title>
+      <Title style={{ margin: '0 12px', paddingBottom: 12 }}>
+        追剧列表
+        <Link
+          style={{
+            paddingLeft: 8,
+            fontSize: '12px',
+          }}
+          target="_blank"
+          href="/assets/html/options.html">
+          设置
+        </Link>
+      </Title>
       <BingesList>
         {binges?.map(({ id, title, url, current, total, post, updateAt }) => {
           return (
