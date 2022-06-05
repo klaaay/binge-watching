@@ -12,6 +12,7 @@ const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.pn
 
 function App() {
   const [binges, setBinges] = useState<Binge[]>([]);
+  const [filterValue, setFilterValue] = useState('');
 
   const {
     register,
@@ -90,55 +91,64 @@ function App() {
           </div>
         </div>
         <div className="content">
-          {binges?.map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
-            return (
-              <ListItemWrapper key={id}>
-                <SectionTitle>{title}</SectionTitle>
-                <Flex>
-                  <Label>剧名：</Label>
-                  <Input defaultValue={title} onChange={handleSpecificChange(id, 'title', title)} />
-                </Flex>
-                <Flex>
-                  <Label>地址：</Label>
-                  <Input defaultValue={url} onChange={handleSpecificChange(id, 'url', url)} />
-                </Flex>
-                <Flex>
-                  <Label>看到：</Label>
-                  <Input defaultValue={current} onChange={handleSpecificChange(id, 'current', current)} />
-                </Flex>
-                <Flex>
-                  <Label>一共：</Label>
-                  <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
-                </Flex>
-                <Flex>
-                  <Label>更新：</Label>
-                  <select
-                    defaultValue={updateWeek}
-                    onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
-                    style={{ marginRight: 4 }}>
-                    {weekList.map(item => {
-                      return <option value={item}>{Week[item]}</option>;
-                    })}
-                  </select>
-                  <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
-                </Flex>
-                <Flex>
-                  <Label>海报：</Label>
-                  <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
-                </Flex>
-                <Flex>
-                  <Button
-                    onClick={() => {
-                      const _binges = removeSpecificBing(binges, { id });
-                      setBinges(_binges);
-                    }}
-                    className="danger">
-                    删除
-                  </Button>
-                </Flex>
-              </ListItemWrapper>
-            );
-          })}
+          <Input
+            style={{ width: '100%', height: '24px' }}
+            onChange={e => {
+              setFilterValue(e.target.value);
+            }}
+            placeholder="输入剧名筛选"></Input>
+          {binges
+            ?.filter(item => item.title?.includes(filterValue))
+            .map(({ id, title, url, current, total, post, updateAt, updateWeek }) => {
+              return (
+                <ListItemWrapper key={id}>
+                  <SectionTitle>{title}</SectionTitle>
+
+                  <Flex>
+                    <Label>剧名：</Label>
+                    <Input defaultValue={title} onChange={handleSpecificChange(id, 'title', title)} />
+                  </Flex>
+                  <Flex>
+                    <Label>地址：</Label>
+                    <Input defaultValue={url} onChange={handleSpecificChange(id, 'url', url)} />
+                  </Flex>
+                  <Flex>
+                    <Label>看到：</Label>
+                    <Input defaultValue={current} onChange={handleSpecificChange(id, 'current', current)} />
+                  </Flex>
+                  <Flex>
+                    <Label>一共：</Label>
+                    <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
+                  </Flex>
+                  <Flex>
+                    <Label>更新：</Label>
+                    <select
+                      defaultValue={updateWeek}
+                      onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
+                      style={{ marginRight: 4 }}>
+                      {weekList.map(item => {
+                        return <option value={item}>{Week[item]}</option>;
+                      })}
+                    </select>
+                    <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
+                  </Flex>
+                  <Flex>
+                    <Label>海报：</Label>
+                    <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
+                  </Flex>
+                  <Flex>
+                    <Button
+                      onClick={() => {
+                        const _binges = removeSpecificBing(binges, { id });
+                        setBinges(_binges);
+                      }}
+                      className="danger">
+                      删除
+                    </Button>
+                  </Flex>
+                </ListItemWrapper>
+              );
+            })}
         </div>
         <div className="sidebar-right">
           <AddForm
