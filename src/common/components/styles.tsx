@@ -20,6 +20,8 @@ export const PageWrapper = styled.div`
 
 export const Title = styled.h2`
   color: var(--primary-color);
+  margin-top: 0px;
+  border-bottom: 1px solid var(--primary-color);
 `;
 
 export const SectionTitle = styled.h4`
@@ -112,5 +114,3 @@ export const Icon = styled.div<{
       color: var(--white);
     `}
 `;
-
-
