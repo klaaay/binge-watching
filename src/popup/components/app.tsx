@@ -6,8 +6,8 @@ import { getDiffDay, getDiffDHM, getDiffMinutes, getProgressValue, getWeekDate }
 import { Week } from 'common/constants';
 
 const WEIGHT_1 = 1000000;
-const WEIGHT_2 = 10000;
-const WEIGHT_3 = 1000;
+const WEIGHT_2 = 1000;
+const WEIGHT_3 = 1;
 
 function App() {
   const [binges, setBinges] = useState<Binge[]>([]);
