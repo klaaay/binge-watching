@@ -31,6 +31,7 @@
   "author": "Debdut Karmakar <iawaiponly@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.11.3",
     "dexie": "^3.2.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

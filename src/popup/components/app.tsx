@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PageWrapper, Title, Link, TipText, Icon } from 'common/components/styles';
 import { Binge } from 'common/types';
 import { BingesList, PopupNav } from './styles';
-import { getProgressValue, getWeekDate } from './utils';
+import { getDiffDay, getDiffDHM, getDiffMinutes, getProgressValue, getWeekDate } from './utils';
 import { Week } from 'common/constants';
 
 function App() {
@@ -45,16 +45,22 @@ function App() {
           ?.sort((a, b) => {
             let aProgress = getProgressValue(a.current, a.total);
             let bProgress = getProgressValue(b.current, b.total);
+            const aDiffDays = getDiffDay(a.updateWeek, time);
+            const bDiffDays = getDiffDay(b.updateWeek, time);
+            const aDiffMinutes = getDiffMinutes(aDiffDays, a.updateAt);
+            const bDiffMinutes = getDiffMinutes(bDiffDays, b.updateAt);
+            // 完结的展示在最下面，在更新的更新时间近的展示在前面
             if (a.isEnd) {
-              aProgress = aProgress + 100;
+              aProgress = aProgress + 100000;
             }
             if (b.isEnd) {
-              bProgress = bProgress + 100;
+              bProgress = bProgress + 100000;
             }
-            return aProgress - bProgress;
+            return aProgress + aDiffMinutes - (bProgress + bDiffMinutes);
           })
           .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd }) => {
             const progressValue = getProgressValue(current, total);
+
             return (
               <div
                 key={`${title}-${id}`}
@@ -85,7 +91,12 @@ function App() {
                       value={progressValue}></progress>
                     <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
                   </div>
-                  {!isEnd && <div className="update-time">{`${Week[updateWeek] || ''} ${updateAt}`}</div>}
+                  {!isEnd && (
+                    <div className="update-time">
+                      {`${Week[updateWeek] || ''} ${updateAt}`}
+                      <sup className="update-diff">{getDiffDHM(getDiffDay(updateWeek, time), updateAt)}</sup>
+                    </div>
+                  )}
                 </div>
               </div>
             );

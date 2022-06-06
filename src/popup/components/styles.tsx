@@ -51,8 +51,18 @@ export const BingesList = styled.div`
 
       .update-time {
         margin-top: var(--margin-xs);
-        font-size: var(--font-size-small);
+        font-size: var(--font-size-base);
         color: var(--font-color-1);
+
+        .update-diff {
+          font-size: 10px;
+          color: var(--primary-color);
+          border: 1px solid var(--primary-color);
+          padding: 2px 4px;
+          border-radius: 10px;
+          margin-left: 4px;
+          display: inline-block;
+        }
       }
     }
 
