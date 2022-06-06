@@ -5,6 +5,10 @@ import { BingesList, PopupNav } from './styles';
 import { getDiffDay, getDiffDHM, getDiffMinutes, getProgressValue, getWeekDate } from './utils';
 import { Week } from 'common/constants';
 
+const WEIGHT_1 = 1000000;
+const WEIGHT_2 = 10000;
+const WEIGHT_3 = 1000;
+
 function App() {
   const [binges, setBinges] = useState<Binge[]>([]);
   const [time, setTime] = useState(new Date());
@@ -43,18 +47,16 @@ function App() {
       <BingesList>
         {binges
           ?.sort((a, b) => {
-            let aProgress = getProgressValue(a.current, a.total);
-            let bProgress = getProgressValue(b.current, b.total);
-            const aDiffDays = getDiffDay(a.updateWeek, time);
-            const bDiffDays = getDiffDay(b.updateWeek, time);
-            const aDiffMinutes = getDiffMinutes(aDiffDays, a.updateAt);
-            const bDiffMinutes = getDiffMinutes(bDiffDays, b.updateAt);
-            // 完结的展示在最下面，在更新的更新时间近的展示在前面
+            // 完结第一权重、观看进度第二权重、更新时间第三权重
+            let aProgress = getProgressValue(a.current, a.total) * WEIGHT_2;
+            let bProgress = getProgressValue(b.current, b.total) * WEIGHT_2;
+            const aDiffMinutes = getDiffMinutes(getDiffDay(a.updateWeek, time), a.updateAt) * WEIGHT_3;
+            const bDiffMinutes = getDiffMinutes(getDiffDay(b.updateWeek, time), b.updateAt) * WEIGHT_3;
             if (a.isEnd) {
-              aProgress = aProgress + 100000;
+              aProgress = aProgress + WEIGHT_1;
             }
             if (b.isEnd) {
-              bProgress = bProgress + 100000;
+              bProgress = bProgress + WEIGHT_1;
             }
             return aProgress + aDiffMinutes - (bProgress + bDiffMinutes);
           })
