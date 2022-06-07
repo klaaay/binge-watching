@@ -41,7 +41,7 @@ function App() {
       </PopupNav>
       <BingesList>
         {binges?.sort(getBingeSortFuc(time)).map(binge => {
-          return <BingeItem {...binge} time={time} />;
+          return <BingeItem key={binge.id} {...binge} time={time} binges={binges} setBinges={setBinges} />;
         })}
       </BingesList>
     </PageWrapper>

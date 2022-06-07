@@ -1,7 +1,8 @@
 import { Icon, TipText } from 'common/components/styles';
 import { Week } from 'common/constants';
 import { Binge } from 'common/types';
-import { getDiffDay, getDiffDHM, getProgressValue } from 'common/utils';
+import { getCurrentUpdatedTotal, getDiffDay, getDiffDHM, getProgressValue, modifySpecificBing } from 'common/utils';
+import { useEffect } from 'react';
 
 const BingeItem = ({
   title,
@@ -14,10 +15,30 @@ const BingeItem = ({
   updateWeek,
   updateAt,
   time,
+  binges,
+  setBinges,
 }: Binge & {
   time: Date;
+  binges: Binge[];
+  setBinges: React.Dispatch<React.SetStateAction<Binge[]>>;
 }) => {
   const progressValue = getProgressValue(current, total);
+
+  async function getUpdatedTotal() {
+    const currentTotal = await getCurrentUpdatedTotal(url, total);
+    if (currentTotal == total || !currentTotal) return;
+    const _binges = modifySpecificBing(binges, {
+      id,
+      key: 'total',
+      value: String(currentTotal),
+    });
+    setBinges(_binges);
+  }
+
+  useEffect(() => {
+    if (isEnd) return;
+    getUpdatedTotal();
+  }, [url, isEnd, total, JSON.stringify(binges)]);
 
   return (
     <div

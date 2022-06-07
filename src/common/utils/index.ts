@@ -107,3 +107,21 @@ export const removeSpecificBing = (
   toast.success('删除成功');
   return _binges;
 };
+
+export async function getHtmlText(url: string) {
+  try {
+    const response = await fetch(url);
+    const body = await response.text();
+    return body;
+  } catch (error) {
+    return '';
+  }
+}
+
+export async function getCurrentUpdatedTotal(url: string, configTotal: string) {
+  const htmlText = await getHtmlText(url);
+  if (!htmlText) return configTotal;
+  const updateIndex = htmlText.indexOf('更新至');
+  const updateStr = htmlText.slice(updateIndex, updateIndex + 10);
+  return Number((updateStr || '').match(/\d+/g)?.[0]);
+}
