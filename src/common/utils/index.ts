@@ -20,6 +20,7 @@ export function getDiffDay(updateWeek, time: Date) {
 }
 
 function formatMinutes(minutes: number) {
+  if (minutes <= 0) return '已更新';
   const day = Number(Math.floor(minutes / DAY_MINUTES));
   const hour = day > 0 ? Math.floor((minutes - day * DAY_MINUTES) / 60) : Math.floor(minutes / 60);
   const minute = day > 0 || hour > 0 ? Math.floor(minutes - day * DAY_MINUTES - hour * 60) : minutes;
