@@ -4,8 +4,8 @@ import { Button, Flex, Input, SectionTitle } from 'common/components/styles';
 import { Week, weekList } from 'common/constants';
 import { useOptionState } from './app.container';
 import { Label, ListItemWrapper } from './styles';
-import { modifySpecificBing, removeSpecificBing } from './helper';
 import { Binge } from 'common/types';
+import { modifySpecificBing, removeSpecificBing } from 'common/utils';
 
 const BingesList = () => {
   const [filterValue, setFilterValue] = useState('');
