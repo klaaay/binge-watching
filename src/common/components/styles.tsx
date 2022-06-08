@@ -108,9 +108,9 @@ export const Icon = styled.div<{
   type?: 'default' | 'primary';
 }>`
   display: inline-block;
-  color: var(--font-color-0);
+  color: var(--primary-color);
   background-color: var(--white);
-  border-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: var(--border-radius-base);
   font-size: var(--font-size-base);
   align-items: center;

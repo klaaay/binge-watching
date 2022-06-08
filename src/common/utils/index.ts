@@ -108,6 +108,25 @@ export const removeSpecificBing = (
   return _binges;
 };
 
+export function addCurrentCountBing(
+  originalBinges: Binge[],
+  {
+    id,
+    addCount = 1,
+  }: {
+    id: string;
+    addCount?: number;
+  }
+) {
+  let _binges = cloneDeep(originalBinges);
+  const index = originalBinges.findIndex(item => item.id === id);
+  set(_binges, `${index}.current`, String(Number(_binges[index].current) + 1));
+  chrome.storage.local.set({
+    binges: _binges,
+  });
+  return _binges;
+}
+
 export async function getHtmlText(url: string) {
   try {
     const response = await fetch(url);

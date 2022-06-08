@@ -1,8 +1,38 @@
 import { Icon, TipText } from 'common/components/styles';
 import { Week } from 'common/constants';
 import { Binge } from 'common/types';
-import { getCurrentUpdatedTotal, getDiffDay, getDiffDHM, getProgressValue, modifySpecificBing } from 'common/utils';
+import {
+  addCurrentCountBing,
+  getCurrentUpdatedTotal,
+  getDiffDay,
+  getDiffDHM,
+  getProgressValue,
+  modifySpecificBing,
+} from 'common/utils';
 import { useEffect } from 'react';
+
+const AddCurrentIcon = ({
+  addCount = 1,
+  handleAddCurrent,
+  addCountExisted,
+}: {
+  addCount?: number;
+  handleAddCurrent: (addCount?: number) => void;
+  addCountExisted: (addCount?: number) => boolean;
+}) => {
+  return addCountExisted(addCount) ? (
+    <Icon
+      className="watched-icon"
+      type="primary"
+      onClick={e => {
+        e.stopPropagation();
+        handleAddCurrent(addCount);
+      }}
+      style={{ marginLeft: 4 }}>
+      +{addCount}
+    </Icon>
+  ) : null;
+};
 
 const BingeItem = ({
   title,
@@ -35,6 +65,14 @@ const BingeItem = ({
     setBinges(_binges);
   }
 
+  const handleAddCurrent = (addCount: number = 1) => {
+    setBinges(addCurrentCountBing(binges, { id, addCount }));
+  };
+
+  const addCountExisted = (addCount: number = 1) => {
+    return Number(current) + addCount <= Number(total);
+  };
+
   useEffect(() => {
     if (isEnd) return;
     getUpdatedTotal();
@@ -65,6 +103,8 @@ const BingeItem = ({
         <div>
           <progress title={String(progressValue)} className="progress" max="100" value={progressValue}></progress>
           <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
+          <AddCurrentIcon handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
+          <AddCurrentIcon addCount={5} handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
         </div>
         {!isEnd && (
           <div className="update-time">

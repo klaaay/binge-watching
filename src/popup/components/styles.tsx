@@ -45,6 +45,13 @@ export const BingesList = styled.div`
         padding-left: 8px;
       }
 
+      .watched-icon {
+        margin-left: 4px;
+        font-size: 10px;
+        padding: 2px 4px;
+        text-align: center;
+      }
+
       .progress {
         margin-top: var(--margin-xs);
       }
