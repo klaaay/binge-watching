@@ -12,7 +12,7 @@ const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.pn
 const AddArea = () => {
   const { handleSubmit, register, setBinges, reset, errors, submitRef, watchIsEnd } = useOptionState();
 
-  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
+  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek, isEnd = false, doubanLink = '' }) => {
     chrome.storage.local.get('binges', function (data) {
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
@@ -25,6 +25,7 @@ const AddArea = () => {
           updateWeek,
           post: !!post ? post : DEFAULT_POST,
           isEnd,
+          doubanLink,
           id: `${title}_${uniqueId()}`,
         },
       ];
@@ -89,6 +90,10 @@ const AddArea = () => {
       <Flex alignCenter>
         <Label>海报：</Label>
         <Input placeholder="剧的海报图地址" {...register('post')} />
+      </Flex>
+      <Flex alignCenter>
+        <Label>豆瓣：</Label>
+        <Input placeholder="剧集豆瓣地址" {...register('doubanLink')} />
       </Flex>
       <Flex alignCenter gap={8}>
         <input

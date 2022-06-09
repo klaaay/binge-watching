@@ -8,4 +8,5 @@ export type Binge = {
   updateAt: string;
   updateWeek: string;
   isEnd?: boolean;
+  doubanLink?: string;
 };

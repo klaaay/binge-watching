@@ -47,6 +47,7 @@ const BingeItem = ({
   time,
   binges,
   setBinges,
+  doubanLink,
 }: Binge & {
   time: Date;
   binges: Binge[];
@@ -99,6 +100,17 @@ const BingeItem = ({
           <span className="episode">
             {current} / {total}
           </span>
+        </div>
+        <div className="icon-links">
+          {doubanLink && (
+            <img
+              onClick={() => {
+                window.open(doubanLink);
+              }}
+              src="https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/douban.ico"
+              alt={title}
+            />
+          )}
         </div>
         <div>
           <progress title={String(progressValue)} className="progress" max="100" value={progressValue}></progress>

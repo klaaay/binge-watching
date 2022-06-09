@@ -48,7 +48,7 @@ const BingesList = () => {
         placeholder="输入剧名筛选"></Input>
       {binges
         ?.filter(item => item.title?.includes(filterValue))
-        .map(({ id, title, url, current, total, post, updateAt, updateWeek, isEnd = false }) => {
+        .map(({ id, title, url, current, total, post, updateAt, updateWeek, doubanLink, isEnd = false }) => {
           return (
             <ListItemWrapper key={`${title}-${id}`}>
               <SectionTitle>{title}</SectionTitle>
@@ -95,6 +95,10 @@ const BingesList = () => {
               <Flex>
                 <Label>海报：</Label>
                 <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
+              </Flex>
+              <Flex>
+                <Label>豆瓣：</Label>
+                <Input defaultValue={doubanLink} onChange={handleSpecificChange(id, 'doubanLink', doubanLink)} />
               </Flex>
               <Flex>
                 <Button

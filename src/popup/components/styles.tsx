@@ -39,6 +39,15 @@ export const BingesList = styled.div`
         color: var(--primary-color);
       }
 
+      .icon-links {
+        img {
+          cursor: pointer;
+          display: inline-block;
+          width: 16px;
+          transform: translateY(6px);
+        }
+      }
+
       .episode {
         font-size: var(--font-size-small);
         color: var(--font-color-0);
