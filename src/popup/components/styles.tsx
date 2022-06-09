@@ -85,7 +85,7 @@ export const BingesList = styled.div`
     .post {
       flex-basis: 120px;
       width: 120px;
-      height: 90px;
+      height: 105px;
       margin-right: var(--margin-sm);
       position: relative;
       img {
