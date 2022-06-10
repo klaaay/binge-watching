@@ -14,3 +14,15 @@
 - [x] 根据页面静态信息自动解析更新当前更新到几集
 - [x] 快捷更新观看进度
 - [x] 模糊匹配和快捷筛选支持
+
+
+## 使用方式
+
+```bash
+npm run build
+```
+
+在[谷歌插件页面](chrome://extensions/)手动添加
+
+![P3zDwB](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/P3zDwB.jpg)
+![OXNJ36](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/OXNJ36.jpg)
