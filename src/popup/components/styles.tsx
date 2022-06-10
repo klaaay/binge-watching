@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const PopupNav = styled.div`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
+  height: 55px;
   position: fixed;
   top: 0;
   width: var(--popup-width);
-  padding: var(--padding-sm);
+  padding: var(--padding-sm) var(--padding-lg);
   background-color: var(--white);
   border-bottom: 1px solid var(--primary-color);
   z-index: 1;
@@ -16,17 +17,33 @@ export const PopupNav = styled.div`
   .time {
     color: var(--font-color-1);
     font-size: var(--font-size-small);
-    padding-right: var(--padding-lg);
+  }
+`;
+
+export const PopupFilters = styled.div`
+  position: fixed;
+  box-sizing: border-box;
+  width: var(--popup-width);
+  padding: var(--padding-sm) var(--padding-lg);
+  top: 55px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--white);
+  z-index: 1;
+
+  .filter {
   }
 `;
 
 export const BingesList = styled.div`
-  padding: var(--padding-sm);
-  margin-top: 50px;
+  padding: var(--padding-sm) var(--padding-lg);
+  margin-top: 90px;
 
   .binge-item {
     cursor: pointer;
     display: flex;
+    gap: 20px;
     margin-bottom: var(--margin-sm);
 
     .content {
@@ -83,16 +100,17 @@ export const BingesList = styled.div`
     }
 
     .post {
-      flex-basis: 120px;
-      width: 120px;
+      flex-basis: 70px;
+      width: 70px;
       height: 105px;
-      margin-right: var(--margin-sm);
       position: relative;
       img {
         display: inline-block;
         width: 100%;
         height: 100%;
         object-fit: contain;
+        object-position: left;
+        object-fit: cover;
       }
 
       .end-icon {

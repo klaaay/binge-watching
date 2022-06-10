@@ -1,3 +1,4 @@
+import { FilterItem } from 'common/types';
 import { isNumber } from 'lodash-es';
 
 export enum Week {
@@ -15,3 +16,16 @@ export const weekList = Object.values(Week).filter(isNumber);
 export const WEIGHT_1 = 1000000;
 export const WEIGHT_2 = 1000;
 export const WEIGHT_3 = 1;
+
+export const filterOptions: (FilterItem & { label: string })[] = [
+  {
+    key: 'isEnd',
+    value: true,
+    label: '完结',
+  },
+  {
+    key: 'isEnd',
+    value: false,
+    label: '未完结',
+  },
+];

@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import toast from 'react-hot-toast';
 import { set, cloneDeep } from 'lodash-es';
 import { WEIGHT_1, WEIGHT_2, WEIGHT_3 } from 'common/constants';
-import { Binge } from 'common/types';
+import { Binge, FilterItem } from 'common/types';
 
 export function getWeekDate() {
   var now = new Date();
@@ -125,6 +125,12 @@ export function addCurrentCountBing(
     binges: _binges,
   });
   return _binges;
+}
+
+export function setChromeFilterList(filterList: FilterItem[]) {
+  chrome.storage.local.set({
+    filters: filterList,
+  });
 }
 
 export async function getHtmlText(url: string) {

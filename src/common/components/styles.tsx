@@ -35,11 +35,19 @@ export const SectionTitle = styled.h4`
   color: var(--primary-color);
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{
+  border?: 'default' | 'primary';
+}>`
   display: inline-block;
   border-radius: 4px;
   border: 1px solid var(--black);
   outline: none;
+
+  ${props =>
+    props.border == 'primary' &&
+    css`
+      border: 1px solid var(--primary-color);
+    `}
 
   &:focus {
     border: 1px solid var(--primary-color);
@@ -108,6 +116,7 @@ export const Icon = styled.div<{
   type?: 'default' | 'primary';
 }>`
   display: inline-block;
+  padding: 2px 4px;
   color: var(--primary-color);
   background-color: var(--white);
   border: 1px solid var(--primary-color);

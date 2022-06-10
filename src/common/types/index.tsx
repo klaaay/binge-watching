@@ -10,3 +10,8 @@ export type Binge = {
   isEnd?: boolean;
   doubanLink?: string;
 };
+
+export type FilterItem = {
+  key: keyof Binge;
+  value: Binge[keyof Binge];
+};
