@@ -25,4 +25,5 @@ npm run build
 在[谷歌插件页面](chrome://extensions/)手动添加
 
 ![P3zDwB](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/P3zDwB.jpg)
-![OXNJ36](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/OXNJ36.jpg)
+
+![z4JxIc](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/z4JxIc.jpg)
