@@ -31,9 +31,6 @@ export const PopupFilters = styled.div`
   gap: 10px;
   background-color: var(--white);
   z-index: 1;
-
-  .filter {
-  }
 `;
 
 export const BingesList = styled.div`
@@ -115,8 +112,9 @@ export const BingesList = styled.div`
 
       .end-icon {
         position: absolute;
-        right: 8px;
-        top: 1px;
+        left: 0px;
+        top: 0px;
+        border-radius: 0;
         opacity: 0.9;
         padding: 2px 5px;
       }
