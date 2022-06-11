@@ -23,6 +23,7 @@ npm run build
 ```
 
 在[谷歌插件页面](chrome://extensions/)手动添加
+![extension-local](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/extension-local.gif)
 
 ![P3zDwB](https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/P3zDwB.jpg)
 
