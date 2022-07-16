@@ -74,10 +74,12 @@ function App() {
                 if (isInFilter) {
                   _filterList.splice(isInFilterIndex, 1);
                 } else {
-                  _filterList.push({
-                    key,
-                    value,
-                  });
+                  _filterList = [
+                    {
+                      key,
+                      value,
+                    },
+                  ];
                 }
                 setFilterList(_filterList);
                 setChromeFilterList(_filterList);
