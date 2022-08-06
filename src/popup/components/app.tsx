@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     chrome.storage.local.get('binges', function (data) {
-      setBinges(data.binges as Binge[]);
+      setBinges((data?.binges || []) as Binge[]);
     });
     chrome.storage.local.get('filters', function (data) {
       setFilterList((data?.filters ?? []) as FilterItem[]);
@@ -30,10 +30,10 @@ function App() {
   }, []);
 
   const _filteredBinges = filterList?.length
-    ? binges.filter(binge => filterList.some(filterItem => binge[filterItem.key] === filterItem.value))
+    ? binges?.filter(binge => filterList.some(filterItem => binge[filterItem.key] === filterItem.value))
     : binges;
 
-  const filteredBinges = _filteredBinges.filter(binge => binge.title.includes(filterTitle));
+  const filteredBinges = _filteredBinges?.filter(binge => binge.title.includes(filterTitle));
 
   return (
     <PageWrapper>

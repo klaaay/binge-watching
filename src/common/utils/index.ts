@@ -150,3 +150,6 @@ export async function getCurrentUpdatedTotal(url: string, configTotal: string) {
   const updateStr = htmlText.slice(updateIndex, updateIndex + 10);
   return Number((updateStr || '').match(/\d+/g)?.[0]);
 }
+
+export * from './jsonOutputImport';
+export * from './openFileDialog';
