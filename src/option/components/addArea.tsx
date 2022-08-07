@@ -21,7 +21,7 @@ const AddArea = () => {
           url,
           current,
           total,
-          updateAt,
+          updateAt: updateAt ?? '00:00',
           updateWeek,
           post: !!post ? post : DEFAULT_POST,
           isEnd,
@@ -41,6 +41,7 @@ const AddArea = () => {
         total: '',
         post: '',
         isEnd: false,
+        doubanLink: '',
       });
     });
   };
