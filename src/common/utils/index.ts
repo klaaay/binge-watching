@@ -120,7 +120,7 @@ export function addCurrentCountBing(
 ) {
   let _binges = cloneDeep(originalBinges);
   const index = originalBinges.findIndex(item => item.id === id);
-  set(_binges, `${index}.current`, String(Number(_binges[index].current) + 1));
+  set(_binges, `${index}.current`, String(Number(_binges[index].current) + addCount));
   chrome.storage.local.set({
     binges: _binges,
   });
