@@ -56,14 +56,19 @@ const BingeItem = ({
   const progressValue = getProgressValue(current, total);
 
   async function getUpdatedTotal() {
-    const currentTotal = await getCurrentUpdatedTotal(url, total);
-    if (currentTotal == total || !currentTotal) return;
+    const { count, isFinished } = await getCurrentUpdatedTotal(url, total, isEnd);
+    if (count == total || !count) return;
     const _binges = modifySpecificBing(binges, {
       id,
       key: 'total',
-      value: String(currentTotal),
+      value: String(count),
     });
-    setBinges(_binges);
+    const __binges = modifySpecificBing(_binges, {
+      id,
+      key: 'isEnd',
+      value: isFinished,
+    });
+    setBinges(__binges);
   }
 
   const handleAddCurrent = (addCount: number = 1) => {
