@@ -132,8 +132,11 @@ const BingeItem = ({
               onClick={e => {
                 e.stopPropagation();
                 e.preventDefault();
-                const _binges = removeSpecificBing(binges, { id });
-                setBinges(_binges);
+                const flag = window.confirm('豆瓣了没？');
+                if (flag) {
+                  const _binges = removeSpecificBing(binges, { id });
+                  setBinges(_binges);
+                }
               }}
               style={{ marginLeft: 4 }}>
               <DeleteOutlined
