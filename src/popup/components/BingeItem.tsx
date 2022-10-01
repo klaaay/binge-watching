@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Icon, TipText } from 'common/components/styles';
 import { Week } from 'common/constants';
 import { Binge } from 'common/types';
@@ -8,8 +10,9 @@ import {
   getDiffDHM,
   getProgressValue,
   modifySpecificBing,
+  removeSpecificBing,
 } from 'common/utils';
-import { useEffect } from 'react';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const AddCurrentIcon = ({
   addCount = 1,
@@ -122,6 +125,24 @@ const BingeItem = ({
           <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
           <AddCurrentIcon handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
           <AddCurrentIcon addCount={5} handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
+          {Number(current) >= Number(total) && (
+            <Icon
+              className="watched-icon"
+              type="primary"
+              onClick={e => {
+                e.stopPropagation();
+                e.preventDefault();
+                const _binges = removeSpecificBing(binges, { id });
+                setBinges(_binges);
+              }}
+              style={{ marginLeft: 4 }}>
+              <DeleteOutlined
+                style={{
+                  color: 'white',
+                }}
+              />
+            </Icon>
+          )}
         </div>
         {!isEnd && (
           <div className="update-time">
