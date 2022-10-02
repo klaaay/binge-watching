@@ -148,20 +148,26 @@ export async function getHtmlText(url: string) {
 export async function getCurrentUpdatedTotal(url: string, configTotal: string, isEnd: boolean) {
   const htmlText = await getHtmlText(url);
   if (!htmlText) return { count: configTotal, isFinished: isEnd };
-  const finishIndex = htmlText.indexOf('全集');
+  const yhStartIndex = htmlText.indexOf('sinfo');
+  const yhEndIndex = htmlText.indexOf('bdshare');
+  const yhUpdateStr = htmlText.slice(yhStartIndex, yhEndIndex);
+  const yhFinishIndex = yhUpdateStr.indexOf('全集');
   const bFinishIndex = htmlText.indexOf('已完结');
-  if (finishIndex > 0 || bFinishIndex > 0) {
+  if (yhFinishIndex > 0 || bFinishIndex > 0) {
     if (url.includes('bilibili')) {
-      const updateStr = htmlText.slice(bFinishIndex, bFinishIndex + 1000);
+      const updateStr = htmlText.slice(bFinishIndex, bFinishIndex + 100);
       return { count: Number((updateStr || '').match(/\d+/g)?.[0]), isFinished: true };
-    } else {
-      const updateStr = htmlText.slice(Math.max(finishIndex - 1000, 0), finishIndex);
+    } else if (url.includes('yinghua')) {
+      const updateStr = htmlText.slice(Math.max(yhFinishIndex - 100, 0), yhFinishIndex);
       const matchArr = (updateStr || '').match(/\d+/g);
       return { count: Number(matchArr?.[matchArr.length - 1]), isFinished: true };
+    } else {
+      const updateStr = htmlText.slice(bFinishIndex, bFinishIndex + 100);
+      return { count: Number((updateStr || '').match(/\d+/g)?.[0]), isFinished: true };
     }
   } else {
     const updateIndex = htmlText.indexOf('更新至');
-    const updateStr = htmlText.slice(updateIndex, updateIndex + 1000);
+    const updateStr = htmlText.slice(updateIndex, updateIndex + 100);
     return { count: Number((updateStr || '').match(/\d+/g)?.[0]), isFinished: false };
   }
 }
