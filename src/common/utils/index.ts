@@ -67,7 +67,7 @@ export const getBingeSortFuc = (time: Date) => (a: Binge, b: Binge) => {
   } else {
     bProgress = bProgress + getDiffMinutes(getDiffDay(b.updateWeek, time), b.updateAt) * WEIGHT_3 * -1;
   }
-  return bProgress - aProgress;
+  return  aProgress - bProgress;
 };
 
 export const modifySpecificBing = (
