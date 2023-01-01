@@ -125,27 +125,25 @@ const BingeItem = ({
           <TipText style={{ paddingLeft: 4 }}>{progressValue}%</TipText>
           <AddCurrentIcon handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
           <AddCurrentIcon addCount={5} handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
-          {Number(current) >= Number(total) && (
-            <Icon
-              className="watched-icon"
-              type="primary"
-              onClick={e => {
-                e.stopPropagation();
-                e.preventDefault();
-                const flag = window.confirm('豆瓣了没？');
-                if (flag) {
-                  const _binges = removeSpecificBing(binges, { id });
-                  setBinges(_binges);
-                }
+          <Icon
+            className="watched-icon"
+            type="primary"
+            onClick={e => {
+              e.stopPropagation();
+              e.preventDefault();
+              const flag = window.confirm('豆瓣了没？');
+              if (flag) {
+                const _binges = removeSpecificBing(binges, { id });
+                setBinges(_binges);
+              }
+            }}
+            style={{ marginLeft: 4 }}>
+            <DeleteOutlined
+              style={{
+                color: 'white',
               }}
-              style={{ marginLeft: 4 }}>
-              <DeleteOutlined
-                style={{
-                  color: 'white',
-                }}
-              />
-            </Icon>
-          )}
+            />
+          </Icon>
         </div>
         {!isEnd && (
           <div className="update-time">

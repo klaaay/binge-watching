@@ -160,13 +160,10 @@ export async function getCurrentUpdatedTotal(url: string, configTotal: string, i
     if (url.includes('bilibili')) {
       const updateStr = htmlText.slice(bFinishIndex, bFinishIndex + 100);
       return { count: Number((updateStr || '').match(/\d+/g)?.[0]), isFinished: true };
-    } else if (url.includes('yinghua')) {
+    } else if (url.includes('yinghua') || url.includes('yhdmp')) {
       const updateStr = htmlText.slice(Math.max(yhFinishIndex - 100, 0), yhFinishIndex);
       const matchArr = (updateStr || '').match(/\d+/g);
       return { count: Number(matchArr?.[matchArr.length - 1]), isFinished: true };
-    } else {
-      const updateStr = htmlText.slice(bFinishIndex, bFinishIndex + 100);
-      return { count: Number((updateStr || '').match(/\d+/g)?.[0]), isFinished: true };
     }
   } else {
     const updateIndex = htmlText.indexOf('更新至');
