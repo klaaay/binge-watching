@@ -113,7 +113,7 @@ export const Flex = styled.div<{
 `;
 
 export const Icon = styled.div<{
-  type?: 'default' | 'primary';
+  type?: 'default' | 'primary' | 'danger';
 }>`
   display: inline-block;
   padding: 2px 4px;
@@ -127,6 +127,12 @@ export const Icon = styled.div<{
     props.type == 'primary' &&
     css`
       background-color: var(--primary-color);
+      color: var(--white);
+    `}
+  ${props =>
+    props.type == 'danger' &&
+    css`
+      background-color: var(--error-color);
       color: var(--white);
     `}
 `;
