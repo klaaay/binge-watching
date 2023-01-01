@@ -136,8 +136,7 @@ const BingeItem = ({
                 const _binges = removeSpecificBing(binges, { id });
                 setBinges(_binges);
               }
-            }}
-            style={{ marginLeft: 4 }}>
+            }}>
             <DeleteOutlined
               style={{
                 color: 'white',
