@@ -134,6 +134,7 @@ export const Icon = styled.div<{
     css`
       background-color: var(--error-color);
       color: var(--white);
+      border: 1px solid var(--error-color);
     `}
 `;
 

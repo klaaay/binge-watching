@@ -126,7 +126,7 @@ const BingeItem = ({
           <AddCurrentIcon handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
           <AddCurrentIcon addCount={5} handleAddCurrent={handleAddCurrent} addCountExisted={addCountExisted} />
           <Icon
-            className="watched-icon"
+            className="watched-icon delete"
             type="danger"
             onClick={e => {
               e.stopPropagation();

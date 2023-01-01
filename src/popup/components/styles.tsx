@@ -73,6 +73,10 @@ export const BingesList = styled.div`
         font-size: 10px;
         padding: 2px 4px;
         text-align: center;
+
+        &.delete {
+          margin-left: 12px;
+        }
       }
 
       .progress {
