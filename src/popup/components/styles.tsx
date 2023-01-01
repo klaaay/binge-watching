@@ -75,7 +75,7 @@ export const BingesList = styled.div`
         text-align: center;
 
         &.delete {
-          margin-left: 12px;
+          margin-left: 8px;
         }
       }
 
