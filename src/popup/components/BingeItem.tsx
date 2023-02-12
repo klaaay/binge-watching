@@ -51,6 +51,7 @@ const BingeItem = ({
   binges,
   setBinges,
   doubanLink,
+  bangumiLink,
 }: Binge & {
   time: Date;
   binges: Binge[];
@@ -116,6 +117,18 @@ const BingeItem = ({
                 window.open(doubanLink);
               }}
               src="https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/douban.ico"
+              alt={title}
+            />
+          )}
+          {bangumiLink && (
+            <img
+              onClick={() => {
+                window.open(bangumiLink);
+              }}
+              style={{
+                
+              }}
+              src="https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/下载.ico"
               alt={title}
             />
           )}

@@ -48,71 +48,77 @@ const BingesList = () => {
         placeholder="输入剧名筛选"></Input>
       {binges
         ?.filter(item => item.title?.includes(filterValue))
-        .map(({ id, title, url, current, total, post, updateAt, updateWeek, doubanLink, isEnd = false }) => {
-          return (
-            <ListItemWrapper key={`${title}-${id}`}>
-              <SectionTitle>{title}</SectionTitle>
+        .map(
+          ({ id, title, url, current, total, post, updateAt, updateWeek, doubanLink, bangumiLink, isEnd = false }) => {
+            return (
+              <ListItemWrapper key={`${title}-${id}`}>
+                <SectionTitle>{title}</SectionTitle>
 
-              <Flex>
-                <Label>剧名：</Label>
-                <Input defaultValue={title} onChange={handleSpecificChange(id, 'title', title)} />
-              </Flex>
-              <Flex>
-                <Label>地址：</Label>
-                <Input defaultValue={url} onChange={handleSpecificChange(id, 'url', url)} />
-              </Flex>
-              <Flex>
-                <Label>看到：</Label>
-                <Input defaultValue={current} onChange={handleSpecificChange(id, 'current', current)} />
-              </Flex>
-              <Flex>
-                <Label>一共：</Label>
-                <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
-              </Flex>
-              <Flex>
-                <Label>完结：</Label>
-                <Input type="checkbox" defaultChecked={isEnd} onChange={handleSwitchSpecificChange(id, 'isEnd')} />
-              </Flex>
-              <Flex
-                style={{
-                  display: isEnd ? 'none' : 'flex',
-                }}>
-                <Label>更新：</Label>
-                <select
-                  defaultValue={updateWeek}
-                  onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
-                  style={{ marginRight: 4 }}>
-                  {weekList.map(item => {
-                    return (
-                      <option key={item} value={item}>
-                        {Week[item]}
-                      </option>
-                    );
-                  })}
-                </select>
-                <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
-              </Flex>
-              <Flex>
-                <Label>海报：</Label>
-                <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
-              </Flex>
-              <Flex>
-                <Label>豆瓣：</Label>
-                <Input defaultValue={doubanLink} onChange={handleSpecificChange(id, 'doubanLink', doubanLink)} />
-              </Flex>
-              <Flex>
-                <Button
-                  onClick={() => {
-                    const _binges = removeSpecificBing(binges, { id });
-                    setBinges(_binges);
-                  }}
-                  className="danger">
-                  删除
-                </Button>
-              </Flex>
-            </ListItemWrapper>
-          );
-        })}
+                <Flex>
+                  <Label>剧名：</Label>
+                  <Input defaultValue={title} onChange={handleSpecificChange(id, 'title', title)} />
+                </Flex>
+                <Flex>
+                  <Label>地址：</Label>
+                  <Input defaultValue={url} onChange={handleSpecificChange(id, 'url', url)} />
+                </Flex>
+                <Flex>
+                  <Label>看到：</Label>
+                  <Input defaultValue={current} onChange={handleSpecificChange(id, 'current', current)} />
+                </Flex>
+                <Flex>
+                  <Label>一共：</Label>
+                  <Input defaultValue={total} onChange={handleSpecificChange(id, 'total', total)} />
+                </Flex>
+                <Flex>
+                  <Label>完结：</Label>
+                  <Input type="checkbox" defaultChecked={isEnd} onChange={handleSwitchSpecificChange(id, 'isEnd')} />
+                </Flex>
+                <Flex
+                  style={{
+                    display: isEnd ? 'none' : 'flex',
+                  }}>
+                  <Label>更新：</Label>
+                  <select
+                    defaultValue={updateWeek}
+                    onChange={handleSpecificChange(id, 'updateWeek', updateWeek)}
+                    style={{ marginRight: 4 }}>
+                    {weekList.map(item => {
+                      return (
+                        <option key={item} value={item}>
+                          {Week[item]}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <Input defaultValue={updateAt} onChange={handleSpecificChange(id, 'updateAt', updateAt)} />
+                </Flex>
+                <Flex>
+                  <Label>海报：</Label>
+                  <Input defaultValue={post} onChange={handleSpecificChange(id, 'post', post)} />
+                </Flex>
+                <Flex>
+                  <Label>豆瓣：</Label>
+                  <Input defaultValue={doubanLink} onChange={handleSpecificChange(id, 'doubanLink', doubanLink)} />
+                </Flex>
+                <Flex>
+                  <Label>番组：</Label>
+                  <Input defaultValue={bangumiLink} onChange={handleSpecificChange(id, 'bangumiLink', bangumiLink)} />
+                </Flex>
+                <Flex>
+                  <Button
+                    onClick={() => {
+                      const _binges = removeSpecificBing(binges, { id });
+                      setBinges(_binges);
+                    }}
+                    className="danger">
+                    删除
+                  </Button>
+                </Flex>
+              </ListItemWrapper>
+            );
+          }
+        )}
     </>
   );
 };

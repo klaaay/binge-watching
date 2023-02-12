@@ -54,11 +54,19 @@ export const BingesList = styled.div`
       }
 
       .icon-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
         img {
           cursor: pointer;
           display: inline-block;
           width: 16px;
           transform: translateY(6px);
+
+          &:nth-child(2) {
+            transform: translateY(5px);
+          }
         }
       }
 

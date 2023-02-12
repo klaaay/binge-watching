@@ -12,7 +12,18 @@ const DEFAULT_POST = 'https://cdn.jsdelivr.net/gh/klaaay/pbed@main/uPic/movie.pn
 const AddArea = () => {
   const { handleSubmit, register, setBinges, reset, errors, submitRef, watchIsEnd } = useOptionState();
 
-  const addBinge = ({ title, url, current, total, post, updateAt, updateWeek, isEnd = false, doubanLink = '' }) => {
+  const addBinge = ({
+    title,
+    url,
+    current,
+    total,
+    post,
+    updateAt,
+    updateWeek,
+    isEnd = false,
+    doubanLink = '',
+    bangumiLink = '',
+  }) => {
     chrome.storage.local.get('binges', function (data) {
       const _binges: Binge[] = [
         ...((data.binges as Binge[]) || []),
@@ -26,6 +37,7 @@ const AddArea = () => {
           post: !!post ? post : DEFAULT_POST,
           isEnd,
           doubanLink,
+          bangumiLink,
           id: `${title}_${uniqueId()}`,
         },
       ];
@@ -42,6 +54,7 @@ const AddArea = () => {
         post: '',
         isEnd: false,
         doubanLink: '',
+        bangumiLink: '',
       });
     });
   };
@@ -95,6 +108,10 @@ const AddArea = () => {
       <Flex alignCenter>
         <Label>豆瓣：</Label>
         <Input placeholder="剧集豆瓣地址" {...register('doubanLink')} />
+      </Flex>
+      <Flex alignCenter>
+        <Label>番组：</Label>
+        <Input placeholder="Bangumi地址" {...register('bangumiLink')} />
       </Flex>
       <Flex alignCenter gap={8}>
         <input

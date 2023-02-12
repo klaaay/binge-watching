@@ -9,6 +9,7 @@ export type Binge = {
   updateWeek: string;
   isEnd?: boolean;
   doubanLink?: string;
+  bangumiLink?: string;
 };
 
 export type FilterItem = {
